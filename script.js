@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function render() {
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#ffffff'; // white
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         ctx.font = '14px JetBrains Mono, monospace';
