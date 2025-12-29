@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.font = '14px JetBrains Mono, monospace';
 
         cells.forEach(c => {
-            ctx.fillStyle = c.lit ? 'rgba(0,0,0,0.30)' : 'rgba(0,0,0,0.06)';
+            ctx.fillStyle = c.lit ? 'rgba(0,0,0,0.20)' : 'rgba(0,0,0,0.0)';
             ctx.fillText(c.text, c.x, c.y);
         });
     }
