@@ -13,8 +13,6 @@
 </head>
 
 <body>
-    <canvas id="bg-canvas"></canvas>
-
     <header class="header">
         <nav class="nav container">
             <a href="#" class="logo">:thice</a>
@@ -31,8 +29,9 @@
 
     <main>
         <!-- HERO -->
-        <section class="hero container fade-in-up">
-            <div class="hero-content">
+        <section class="hero fade-in-up">
+            <canvas id="bg-canvas"></canvas>
+            <div class="container hero-content">
                 <div class="hero-badge">Alpha Release</div>
                 <h1 class="hero-title">Code Less.<br>Control Everything.</h1>
                 <p class="hero-subtitle">A modern programming language that unifies performance, security, and infrastructure. LLVM-powered, zero-overhead, enterprise-ready.</p>
@@ -162,7 +161,7 @@
                 </div>
 
                 <div class="section-intro fade-in-up">
-                    <p>Traditional security is reactive—you audit code after it's written, hoping to catch vulnerabilities before production. Thice inverts this model. Security rules are enforced <strong>at compile-time</strong>, making entire categories of bugs and data leaks impossible to deploy. Your compliance team can validate policies in the build pipeline, not in manual reviews.</p>
+                    <p>Traditional security is reactive. You audit code after it's written, hoping to catch vulnerabilities before production. Thice inverts this model. Security rules are enforced <strong>at compile-time</strong>, making entire categories of bugs and data leaks impossible to deploy. Your compliance team can validate policies in the build pipeline, not in manual reviews.</p>
                 </div>
 
                 <div class="security-grid fade-in-up">
@@ -181,7 +180,7 @@
 
                     <div class="security-feature">
                         <h3>{ } State Snapshots</h3>
-                        <p>Financial systems need audit trails. With <code>:snapshot</code>, you create immutable checkpoints mid-transaction. Compare before/after states, implement rollback logic, or generate forensic reports—all with native language support.</p>
+                        <p>Financial systems need audit trails. With <code>:snapshot</code>, you create immutable checkpoints mid-transaction. Compare before/after states, implement rollback logic, or generate forensic reports with native language support.</p>
                         <pre><code>processPayment(decimal amount) {
     <span class="keyword">:snapshot</span> Before { balance }
     
@@ -194,7 +193,7 @@
 
                     <div class="security-feature">
                         <h3>:: Capability Manifest</h3>
-                        <p>Every Thice binary can emit a "security X-Ray" listing all external resources it accesses. Network endpoints, filesystem paths, FFI calls—visible before deployment. Your security team can block any build that requests unexpected permissions.</p>
+                        <p>Every Thice binary can emit a "security X-Ray" listing all external resources it accesses: network endpoints, filesystem paths, FFI calls. Your security team can block any build that requests unexpected permissions.</p>
                         <pre><code>$ tc audit payment-service.tc
 
 {
@@ -207,7 +206,7 @@
 
                     <div class="security-feature">
                         <h3># Policy as Code</h3>
-                        <p>Define organization-wide security policies in a single file. Block unsafe operations, restrict cloud providers, ban vulnerable libraries—enforced automatically on every build across all teams.</p>
+                        <p>Define organization-wide security policies in a single file. Block unsafe operations, restrict cloud providers, ban vulnerable libraries. Enforced automatically on every build across all teams.</p>
                         <pre><code><span class="comment">** Enterprise policy.thice</span>
 <span class="keyword">:deny</span> :unsafe          <span class="comment">** No raw pointers</span>
 <span class="keyword">:deny</span> :net.http        <span class="comment">** HTTPS only</span>
@@ -310,7 +309,7 @@
                 </div>
 
                 <div class="section-intro fade-in-up">
-                    <p>Thice doesn't exist in isolation. Your organization has decades of C libraries, proven Rust crates, and critical Go services. Thice compiles to LLVM IR—the same backend used by Clang, Swift, and Rust—enabling zero-overhead integration with existing code. Call C functions directly, link Rust crates, or expose Thice modules to other languages. One platform, every ecosystem.</p>
+                    <p>Thice doesn't exist in isolation. Your organization has decades of C libraries, proven Rust crates, and critical Go services. Thice compiles to LLVM IR, the same backend used by Clang, Swift, and Rust, enabling zero-overhead integration with existing code. Call C functions directly, link Rust crates, or expose Thice modules to other languages. One platform, every ecosystem.</p>
                 </div>
 
                 <div class="interop-grid fade-in-up">
@@ -351,7 +350,7 @@ db = sqlite3_open("app.db")</code></pre>
             </div>
 
             <div class="section-intro fade-in-up">
-                <p>The software supply chain is under attack. Typosquatting, abandoned packages, anonymous maintainers uploading malware—enterprises face real risk from dependencies they can't verify. Thice Passport solves this by requiring every registry publisher to complete identity verification. When you import a package, you know a real, legally-accountable developer stands behind it.</p>
+                <p>The software supply chain is under attack. Typosquatting, abandoned packages, anonymous maintainers uploading malware. Enterprises face real risk from dependencies they can't verify. Thice Passport solves this by requiring every registry publisher to complete identity verification. When you import a package, you know a real, legally-accountable developer stands behind it.</p>
             </div>
 
             <div class="passport-content fade-in-up">

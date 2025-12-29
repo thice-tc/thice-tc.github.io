@@ -1,9 +1,8 @@
-// Thice Mural Animation - Clean rewrite
-// Keywords grid with on/off toggle effect
-
+// Thice Mural Animation - Hero section only
 document.addEventListener('DOMContentLoaded', () => {
+    const hero = document.querySelector('.hero');
     const canvas = document.getElementById('bg-canvas');
-    if (!canvas) return;
+    if (!hero || !canvas) return;
 
     const ctx = canvas.getContext('2d');
     let cells = [];
@@ -17,8 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     function setup() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // Size to hero section
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
 
         cells = [];
         const gapX = 110;
@@ -44,13 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.font = '14px JetBrains Mono, monospace';
 
         cells.forEach(c => {
-            ctx.fillStyle = c.lit ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.06)';
+            ctx.fillStyle = c.lit ? 'rgba(0,0,0,0.30)' : 'rgba(0,0,0,0.06)';
             ctx.fillText(c.text, c.x, c.y);
         });
     }
 
     function toggle() {
-        // Toggle ~5% of cells randomly
         const count = Math.max(1, Math.floor(cells.length * 0.05));
         for (let i = 0; i < count; i++) {
             const idx = Math.floor(Math.random() * cells.length);
@@ -59,11 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
         render();
     }
 
-    // Initialize
     setup();
     window.addEventListener('resize', setup);
-
-    // Animation loop - toggle every 300ms
     setInterval(toggle, 300);
 
     // Header scroll
