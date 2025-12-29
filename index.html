@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thice - A sovereign programming language for performance, security, and developer freedom.">
+    <title>Thice - Code Less. Control Everything.</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="logo">:thice</a>
+            <ul class="nav-links">
+                <li><a href="#why">Why Thice</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#interop">Interop</a></li>
+                <li><a href="#passport">Passport</a></li>
+                <li><a href="https://github.com/thice-lang/thice" target="_blank">GitHub</a></li>
+                <li><a href="#docs" class="btn btn-sm btn-glass">Docs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero container fade-in-up">
+            <div class="hero-content">
+                <div class="hero-badge">Alpha Release</div>
+                <h1 class="hero-title">Code Less.<br>Control Everything.</h1>
+                <p class="hero-subtitle">A modern programming language that unifies performance, security, and infrastructure. LLVM-powered, zero-overhead, enterprise-ready.</p>
+
+                <div class="command-box">
+                    <span class="command-text">$ curl -sL thice.dev/install | bash</span>
+                    <button class="copy-btn" aria-label="Copy command">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#docs" class="btn btn-primary">Get Started</a>
+                    <a href="https://github.com/thice-lang/thice" target="_blank" class="btn btn-outline">View Source</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY THICE - COMPARISON -->
+        <section id="why" class="section alt-bg">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2>Why Thice?</h2>
+                    <p>The best of all worlds, without the trade-offs.</p>
+                </div>
+
+                <div class="comparison-table fade-in-up">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Java / C#</th>
+                                <th>Python / Node</th>
+                                <th>Rust / C++</th>
+                                <th class="highlight">Thice</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Verbosity</td>
+                                <td>High (Boilerplate)</td>
+                                <td>Low</td>
+                                <td>Medium</td>
+                                <td class="highlight">Minimal</td>
+                            </tr>
+                            <tr>
+                                <td>Performance</td>
+                                <td>VM/JIT</td>
+                                <td>Interpreted</td>
+                                <td>Native</td>
+                                <td class="highlight">LLVM Zero-Cost</td>
+                            </tr>
+                            <tr>
+                                <td>Learning Curve</td>
+                                <td>Medium</td>
+                                <td>Low</td>
+                                <td>High</td>
+                                <td class="highlight">Low</td>
+                            </tr>
+                            <tr>
+                                <td>Infrastructure</td>
+                                <td>External SDKs</td>
+                                <td>External SDKs</td>
+                                <td>Manual</td>
+                                <td class="highlight">Native Directives</td>
+                            </tr>
+                            <tr>
+                                <td>Security</td>
+                                <td>Runtime</td>
+                                <td>Runtime</td>
+                                <td>Memory Safe</td>
+                                <td class="highlight">Compile-time Audit</td>
+                            </tr>
+                            <tr>
+                                <td>Vendor Lock-in</td>
+                                <td>SDK Coupled</td>
+                                <td>SDK Coupled</td>
+                                <td>SDK Coupled</td>
+                                <td class="highlight">Agnostic by Design</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- USE CASES -->
+        <section id="usecases" class="section container">
+            <div class="section-header fade-in-up">
+                <h2>Where Thice Shines</h2>
+                <p>Built for the challenges of modern software.</p>
+            </div>
+
+            <div class="usecase-grid fade-in-up">
+                <div class="usecase-card">
+                    <div class="usecase-icon">$</div>
+                    <h3>Fintechs & Trading</h3>
+                    <p>Native <code>decimal</code> type for precision. <code>:snapshot</code> for transaction forensics. Microsecond latency with LLVM.</p>
+                </div>
+                <div class="usecase-card">
+                    <div class="usecase-icon">→</div>
+                    <h3>Edge & IoT</h3>
+                    <p>Tiny binaries, no runtime. Run AI inference directly on devices with <code>:ia</code> directives.</p>
+                </div>
+                <div class="usecase-card">
+                    <div class="usecase-icon">↗</div>
+                    <h3>High-Scale Backend</h3>
+                    <p>Structured concurrency with <code>:async</code> and <code>:race</code>. 10-50x less resources than interpreted languages.</p>
+                </div>
+                <div class="usecase-card">
+                    <div class="usecase-icon">◉</div>
+                    <h3>Compliance & Audit</h3>
+                    <p>LGPD, GDPR, SOX, PCI-DSS ready. Automatic data flow tracking and capability manifests.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECURITY -->
+        <section id="security" class="section alt-bg">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2>Security by Design</h2>
+                    <p>Compliance validated at compile-time, not audit-time.</p>
+                </div>
+
+                <div class="security-grid fade-in-up">
+                    <div class="security-feature">
+                        <h3>[ ] Data Loss Prevention</h3>
+                        <p>The compiler tracks sensitive data (PII). If tainted data tries to leak via logs or network without sanitization, compilation fails.</p>
+                        <pre><code><span class="comment">** Marked as sensitive</span>
+#str credit_card :meta { sensitive: true }
+
+<span class="comment">** ERROR: Data Leak detected</span>
+:out f"CC: {user.credit_card}"
+
+<span class="comment">** OK: Sanitized output</span>
+:out f"CC: {user.credit_card.mask()}"</code></pre>
+                    </div>
+
+                    <div class="security-feature">
+                        <h3>{ } State Snapshots</h3>
+                        <p>Create audit checkpoints mid-transaction. Perfect for forensic analysis and rollback logic.</p>
+                        <pre><code>processTransaction(decimal amount) {
+    <span class="keyword">:snapshot</span> Before { balance }
+    
+    balance -= amount
+    
+    <span class="comment">** Audit trail</span>
+    :out f"Was: {Before.balance}"
+    :out f"Now: {balance}"
+}</code></pre>
+                    </div>
+
+                    <div class="security-feature">
+                        <h3>:: Capability Manifest</h3>
+                        <p>Every binary emits a security X-Ray. Know exactly what your code accesses before deployment.</p>
+                        <pre><code>$ tc audit app.tc
+
+{
+  "capabilities": [
+    "network.outbound (api.stripe.com)",
+    "filesystem.read (/configs)",
+    "unsafe.ffi: false"
+  ],
+  "sensitive_data_violations": 0
+}</code></pre>
+                    </div>
+
+                    <div class="security-feature">
+                        <h3># Policy as Code</h3>
+                        <p>Define global security policies that block non-compliant builds organization-wide.</p>
+                        <pre><code><span class="comment">** policy.thice</span>
+<span class="keyword">:deny</span> :unsafe
+<span class="keyword">:deny</span> :net.http  <span class="comment">** HTTPS only</span>
+<span class="keyword">:deny</span> :cloud.azure
+<span class="keyword">:allow</span> :cloud.aws</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CODE EXAMPLES -->
+        <section id="examples" class="section container">
+            <div class="section-header fade-in-up">
+                <h2>Code in Action</h2>
+                <p>Expressive syntax that reads like intent.</p>
+            </div>
+
+            <div class="examples-grid fade-in-up">
+                <div class="example-card">
+                    <h3>Hello World</h3>
+                    <pre><code><span class="keyword">:ns</span> app {
+    :out <span class="string">"Hello, Thice!"</span>
+}</code></pre>
+                    <p class="example-note">No main(), no ceremony. Just code.</p>
+                </div>
+
+                <div class="example-card">
+                    <h3>Types & Structs</h3>
+                    <pre><code><span class="keyword">:type</span> +User {
+    str name
+    int id
+    
+    greet() {
+        :out f<span class="string">"Hi, {..name}"</span>
+    }
+}</code></pre>
+                    <p class="example-note">Clean struct definitions with methods.</p>
+                </div>
+
+                <div class="example-card">
+                    <h3>Expressive Loops</h3>
+                    <pre><code><span class="comment">** Exclusive range (0-9)</span>
+<span class="keyword">:loop</span> i in 0..10 { :out i }
+
+<span class="comment">** Inclusive range (0-10)</span>
+<span class="keyword">:loop</span> i in 0=..=10 { :out i }</code></pre>
+                    <p class="example-note">Range operators that make sense.</p>
+                </div>
+
+                <div class="example-card">
+                    <h3>Vendor-Agnostic Infra</h3>
+                    <pre><code><span class="comment">** Same code, any cloud</span>
+<span class="keyword">:cloud</span>.upload(file)
+<span class="keyword">:db</span>.query(<span class="string">"SELECT *"</span>)
+<span class="keyword">:payment</span>.charge(card)
+
+<span class="comment">** Config decides provider</span>
+<span class="comment">** :cloud = :aws.s3</span></code></pre>
+                    <p class="example-note">Intent in code, implementation in config.</p>
+                </div>
+
+                <div class="example-card">
+                    <h3>Design by Contract</h3>
+                    <pre><code>+transfer(Account from, Account to, decimal amt) {
+    <span class="keyword">:require</span> {
+        amt > 0
+        from.balance >= amt
+    }
+    
+    <span class="keyword">:ensure</span> {
+        (from.balance + to.balance) == 
+        (old(from.balance) + old(to.balance))
+    }
+    
+    from.balance -= amt
+    to.balance += amt
+}</code></pre>
+                    <p class="example-note">Pre/post conditions validated at compile-time.</p>
+                </div>
+
+                <div class="example-card">
+                    <h3>Pure Functions</h3>
+                    <pre><code><span class="keyword">:pure</span> calculateTax(decimal value) decimal {
+    <span class="keyword">:return</span> value * 0.15
+    
+    <span class="comment">** ERROR: I/O not allowed in pure scope</span>
+    <span class="comment">** :out "Log"</span>
+}</code></pre>
+                    <p class="example-note">Guaranteed no side effects.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTEROPERABILITY -->
+        <section id="interop" class="section alt-bg">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2>Universal Interoperability</h2>
+                    <p>Integrate with any ecosystem. No rewrites required.</p>
+                </div>
+
+                <div class="interop-grid fade-in-up">
+                    <div class="interop-card">
+                        <h3>LLVM Backend</h3>
+                        <p>Compile to the same IR as Clang, Swift, and Rust. Access decades of optimization work and target any platform LLVM supports.</p>
+                    </div>
+                    <div class="interop-card">
+                        <h3>C / C++ FFI</h3>
+                        <p>Call C and C++ libraries directly. No bindings generation needed. Use the <code>:ffi</code> directive to link existing code.</p>
+                        <pre><code>:ffi "sqlite3.h"
+db = sqlite3_open("app.db")</code></pre>
+                    </div>
+                    <div class="interop-card">
+                        <h3>Rust Integration</h3>
+                        <p>Link Rust crates via LLVM. Share memory-safe abstractions between Thice and Rust codebases.</p>
+                    </div>
+                    <div class="interop-card">
+                        <h3>Go Interop</h3>
+                        <p>Call Go packages using cgo-compatible interfaces. Leverage Go's networking and concurrency primitives.</p>
+                    </div>
+                    <div class="interop-card wide">
+                        <h3>Vendor Neutrality</h3>
+                        <p>Infrastructure directives abstract cloud providers. Write once, deploy anywhere: AWS, GCP, Azure, or on-premise. The code defines <em>what</em>, the config defines <em>who provides</em>.</p>
+                        <pre><code>:cloud.upload(file)      ** Provider agnostic
+:db.query("SELECT *")    ** Any SQL database  
+:queue.push(message)     ** RabbitMQ, Kafka, SQS...</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THICE PASSPORT -->
+        <section id="passport" class="section container">
+            <div class="section-header fade-in-up">
+                <h2>Thice Passport</h2>
+                <p>Verified developer identity for a trusted ecosystem.</p>
+            </div>
+
+            <div class="passport-content fade-in-up">
+                <div class="passport-info">
+                    <div class="passport-badge">$19 one-time</div>
+                    <h3>Know Your Developer (KYD)</h3>
+                    <p>Every package in the Thice Registry comes from a verified developer. No anonymous spam, no typosquatting, no hidden malware.</p>
+
+                    <ul class="passport-features">
+                        <li><strong>→</strong> Identity verification via Stripe Identity (coming soon)</li>
+                        <li><strong>→</strong> Code signing certificates for your libraries</li>
+                        <li><strong>→</strong> Enterprise trust badges for organizations</li>
+                        <li><strong>→</strong> Legal accountability for published packages</li>
+                        <li><strong>→</strong> Priority support and early access</li>
+                    </ul>
+
+                    <p class="passport-note">CTOs can trust that every dependency has a verified, accountable developer behind it.</p>
+                </div>
+                <div class="passport-visual">
+                    <div class="passport-card">
+                        <div class="passport-card-header">THICE PASSPORT</div>
+                        <div class="passport-card-id">ID: TC-2025-XXXXX</div>
+                        <div class="passport-card-name">Developer Name</div>
+                        <div class="passport-card-status">✓ Verified</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section id="docs" class="section alt-bg center-text fade-in-up">
+            <div class="container">
+                <h2>Ready to build?</h2>
+                <p>Join developers who demand performance, clarity, and control.</p>
+                <br>
+                <div class="cta-group">
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                    <a href="#" class="btn btn-outline">Join Discord</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <span class="logo-footer">:thice</span>
+                <p>&copy; 2025 Thice Project. Code Less. Control Everything.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Twitter/X</a>
+                <a href="#">GitHub</a>
+                <a href="#">Discord</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
