@@ -286,7 +286,18 @@ p {
 }
 
 .section-header {
+    margin-bottom: var(--spacing-md);
+}
+
+.section-intro {
+    max-width: 800px;
     margin-bottom: var(--spacing-lg);
+}
+
+.section-intro p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #444;
 }
 
 .center-text {
