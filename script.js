@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Thice keywords
     const words = [
-        ':ns', ':type', ':fn', ':use', ':out', ':loop',
-        ':pure', ':async', ':ffi', ':db', ':cloud',
+        ':space', ':frame', ':use', ':out', ':loop',
+        ':if', ':try', ':handle', ':always', ':return',
+        ':async', ':ffi', ':db', ':cloud', ':error',
         ':require', ':ensure', ':snapshot', ':deny',
         'str', 'int', 'decimal', 'bool', 'i32', 'i64'
     ];

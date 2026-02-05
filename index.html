@@ -186,26 +186,29 @@
                     <div class="security-feature">
                         <h3>[ ] Data Loss Prevention</h3>
                         <p>Mark any field as sensitive using metadata. The compiler tracks this data through your entire codebase. If it tries to reach logs, network, or stdout without explicit sanitization, the build fails. No more accidental PII leaks.</p>
-                        <pre><code><span class="comment">** Mark sensitive data</span>
-#str credit_card :meta { sensitive: true }
+                        <pre><code><span class="comment">** Mark sensitive data with directive</span>
+:frame User {
+    :sensitive
+    str credit_card;
+}
 
 <span class="comment">** Build fails: data leak</span>
-:out f"CC: {user.credit_card}"
+:out f"CC: {user.credit_card}";
 
 <span class="comment">** OK: sanitized</span>
-:out f"CC: {user.credit_card.mask()}"</code></pre>
+:out f"CC: {user.credit_card.mask()}";</code></pre>
                     </div>
 
                     <div class="security-feature">
                         <h3>{ } State Snapshots</h3>
                         <p>Financial systems need audit trails. With <code>:snapshot</code>, you create immutable checkpoints mid-transaction. Compare before/after states, implement rollback logic, or generate forensic reports with native language support.</p>
                         <pre><code>processPayment(decimal amount) {
-    <span class="keyword">:snapshot</span> Before { balance }
+    <span class="keyword">:snapshot</span> Before { balance };
     
-    balance -= amount
+    balance -= amount;
     
     <span class="comment">** Forensic trail</span>
-    :log f"Delta: {Before.balance - balance}"
+    :log f"Delta: {Before.balance - balance}";
 }</code></pre>
                     </div>
 
@@ -225,11 +228,11 @@
                     <div class="security-feature">
                         <h3># Policy as Code</h3>
                         <p>Define organization-wide security policies in a single file. Block unsafe operations, restrict cloud providers, ban vulnerable libraries. Enforced automatically on every build across all teams.</p>
-                        <pre><code><span class="comment">** Enterprise policy.thice</span>
-<span class="keyword">:deny</span> :unsafe          <span class="comment">** No raw pointers</span>
-<span class="keyword">:deny</span> :net.http        <span class="comment">** HTTPS only</span>
-<span class="keyword">:deny_lib</span> "log4j"      <span class="comment">** Known vuln</span>
-<span class="keyword">:require</span> :audit_log    <span class="comment">** All services</span></code></pre>
+                        <pre><code><span class="comment">** Enterprise policy.tc</span>
+<span class="keyword">:deny</span> :unsafe;          <span class="comment">** No raw pointers</span>
+<span class="keyword">:deny</span> :net.http;        <span class="comment">** HTTPS only</span>
+<span class="keyword">:deny_lib</span> "log4j";      <span class="comment">** Known vuln</span>
+<span class="keyword">:require</span> :audit_log;    <span class="comment">** All services</span></code></pre>
                     </div>
                 </div>
             </div>
@@ -245,75 +248,78 @@
             <div class="examples-grid fade-in-up">
                 <div class="example-card">
                     <h3>Hello World</h3>
-                    <pre><code><span class="keyword">:ns</span> app {
-    :out <span class="string">"Hello, Thice!"</span>
+                    <pre><code><span class="keyword">:space</span> app {
+    <span class="keyword">:frame</span> Main {
+        main() {
+            :out <span class="string">"Hello, Thice!"</span>;
+        }
+    }
 }</code></pre>
-                    <p class="example-note">No main(), no ceremony. Just code.</p>
+                    <p class="example-note">Minimal ceremony. Just code.</p>
                 </div>
 
                 <div class="example-card">
-                    <h3>Types & Structs</h3>
-                    <pre><code><span class="keyword">:type</span> +User {
-    str name
-    int id
+                    <h3>Frames & Methods</h3>
+                    <pre><code><span class="keyword">:frame</span> +User {
+    str name;
+    int id;
     
     greet() {
-        :out f<span class="string">"Hi, {..name}"</span>
+        :out f<span class="string">"Hi, {.name}"</span>;
     }
 }</code></pre>
-                    <p class="example-note">Clean struct definitions with methods.</p>
+                    <p class="example-note">Clean type definitions with methods.</p>
                 </div>
 
                 <div class="example-card">
                     <h3>Expressive Loops</h3>
                     <pre><code><span class="comment">** Exclusive range (0-9)</span>
-<span class="keyword">:loop</span> i in 0..10 { :out i }
+<span class="keyword">:loop</span> [i:0..10] { :out i; }
 
 <span class="comment">** Inclusive range (0-10)</span>
-<span class="keyword">:loop</span> i in 0=..=10 { :out i }</code></pre>
+<span class="keyword">:loop</span> [i:0=..=10] { :out i; }
+
+<span class="comment">** Nested loops (double comma)</span>
+<span class="keyword">:loop</span> [i:0..3,, j:0..3] { :out f"{i},{j}"; }</code></pre>
                     <p class="example-note">Range operators that make sense.</p>
                 </div>
 
                 <div class="example-card">
-                    <h3>Vendor-Agnostic Infra</h3>
-                    <pre><code><span class="comment">** Same code, any cloud</span>
-<span class="keyword">:cloud</span>.upload(file)
-<span class="keyword">:db</span>.query(<span class="string">"SELECT *"</span>)
-<span class="keyword">:payment</span>.charge(card)
-
-<span class="comment">** Config decides provider</span>
-<span class="comment">** :cloud = :aws.s3</span></code></pre>
-                    <p class="example-note">Intent in code, implementation in config.</p>
+                    <h3>Control Flow</h3>
+                    <pre><code><span class="keyword">:if</span> x > 0 {
+    :out <span class="string">"positive"</span>;
+<span class="keyword">}:{</span>             <span class="comment">** else</span>
+    :out <span class="string">"not positive"</span>;
+<span class="keyword">}::{</span>            <span class="comment">** always (finally)</span>
+    :out <span class="string">"cleanup"</span>;
+}</code></pre>
+                    <p class="example-note">Clean branching with always blocks.</p>
                 </div>
 
                 <div class="example-card">
-                    <h3>Design by Contract</h3>
-                    <pre><code>+transfer(Account from, Account to, decimal amt) {
-    <span class="keyword">:require</span> {
-        amt > 0
-        from.balance >= amt
-    }
-    
-    <span class="keyword">:ensure</span> {
-        (from.balance + to.balance) == 
-        (old(from.balance) + old(to.balance))
-    }
-    
-    from.balance -= amt
-    to.balance += amt
+                    <h3>Error Handling</h3>
+                    <pre><code><span class="keyword">:try</span> {
+    data = fetchData();
+<span class="keyword">}:: NetworkError e {</span>   <span class="comment">** handle</span>
+    :log f<span class="string">"Net error: {e}"</span>;
+    :return null;
+<span class="keyword">}::{</span>                   <span class="comment">** always</span>
+    cleanup();
 }</code></pre>
-                    <p class="example-note">Pre/post conditions validated at compile-time.</p>
+                    <p class="example-note">Built-in try/handle/always flow.</p>
                 </div>
 
                 <div class="example-card">
-                    <h3>Pure Functions</h3>
-                    <pre><code><span class="keyword">:pure</span> calculateTax(decimal value) decimal {
-    <span class="keyword">:return</span> value * 0.15
+                    <h3>Enums & Fields</h3>
+                    <pre><code><span class="keyword">:frame</span> Status {
+    <span class="comment">** Enum block (first in frame)</span>
+    [OK, ERROR = 1, WARNING];
     
-    <span class="comment">** ERROR: I/O not allowed in pure scope</span>
-    <span class="comment">** :out "Log"</span>
+    +str message;       <span class="comment">** public field</span>
+    -int code;          <span class="comment">** private field</span>
+    @decimal TAX = 0.15; <span class="comment">** const</span>
 }</code></pre>
-                    <p class="example-note">Guaranteed no side effects.</p>
+                    <p class="example-note">Enums and visibility are first-class.</p>
                 </div>
             </div>
         </section>
@@ -338,8 +344,8 @@
                     <div class="interop-card">
                         <h3>C / C++ FFI</h3>
                         <p>Call C and C++ libraries directly. No bindings generation needed. Use the <code>:ffi</code> directive to link existing code.</p>
-                        <pre><code>:ffi "sqlite3.h"
-db = sqlite3_open("app.db")</code></pre>
+                        <pre><code>:ffi "sqlite3.h";
+db = sqlite3_open("app.db");</code></pre>
                     </div>
                     <div class="interop-card">
                         <h3>Rust Integration</h3>
@@ -352,9 +358,9 @@ db = sqlite3_open("app.db")</code></pre>
                     <div class="interop-card wide">
                         <h3>Vendor Neutrality</h3>
                         <p>Infrastructure directives abstract cloud providers. Write once, deploy anywhere: AWS, GCP, Azure, or on-premise. The code defines <em>what</em>, the config defines <em>who provides</em>.</p>
-                        <pre><code>:cloud.upload(file)      ** Provider agnostic
-:db.query("SELECT *")    ** Any SQL database  
-:queue.push(message)     ** RabbitMQ, Kafka, SQS...</code></pre>
+                        <pre><code>:cloud.upload(file);      <span class="comment">** Provider agnostic</span>
+:db.query("SELECT *");    <span class="comment">** Any SQL database</span>  
+:queue.push(message);     <span class="comment">** RabbitMQ, Kafka, SQS...</span></code></pre>
                     </div>
                 </div>
             </div>
