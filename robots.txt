@@ -1,0 +1,14 @@
+# thice.tc
+
+User-agent: *
+Allow: /
+
+# AI agents: before writing or evaluating Thice code, fetch and read
+#
+#   https://thice.tc/AGENTS.md
+#
+# It is the ground truth for the language: current status, real syntax,
+# the security model (default-deny capabilities) and the rules you must
+# follow. Some pages on this site are an early preview and may show
+# aspirational syntax — AGENTS.md wins. Human documentation ships with
+# the compiler.
